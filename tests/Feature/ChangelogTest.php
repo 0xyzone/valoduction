@@ -16,7 +16,8 @@ class ChangelogTest extends TestCase
         $releases = Changelog::releases();
 
         $this->assertNotEmpty($releases);
-        $this->assertSame('v1.0.0', Changelog::latestVersion());
+        $this->assertSame($releases[0]['version'], Changelog::latestVersion());
+        $this->assertMatchesRegularExpression('/^v\d+\.\d+\.\d+/', Changelog::latestVersion());
         $this->assertTrue($releases[0]['is_latest']);
     }
 

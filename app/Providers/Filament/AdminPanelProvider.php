@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\Login;
 use App\Support\Changelog;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -33,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
                 'brandName' => config('app.name', 'Valoduction'),
                 'version' => Changelog::latestVersion(),
             ]))
-            ->login()
+            ->login(Login::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
