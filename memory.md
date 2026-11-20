@@ -12,7 +12,7 @@
 - **Strict Rule:** Never run `npm run build` (or equivalent production asset builds).
 
 ## Key Files & Architecture
-- `app/Providers/AppServiceProvider.php` — Globally configures `CreateAction`, `EditAction`, and `ViewAction` as `7xl` slideover modals (`Width::SevenExtraLarge`).
+- `app/Providers/AppServiceProvider.php` — Globally configures `CreateAction`, `EditAction`, and `ViewAction` as `7xl` slideover modals (`Width::SevenExtraLarge`), and registers `ColorPicker::withSwatches()` macro (`resources/views/filament/components/color-swatches.blade.php`).
 - `app/Providers/Filament/AdminPanelProvider.php` — Main Filament `admin` panel (`/admin`, Valorant Red `#FF4655` primary, Warm Gold `#C89B3C` warning, `Plus Jakarta Sans`, collapsible sidebar, custom `App\Filament\Pages\Auth\Login`, `public/css/filament-theme.css` hook). Uses `brandLogo` pointing to `resources/views/filament/brand.blade.php` with `Changelog::latestVersion()`.
 - `public/css/filament-theme.css` — Warm Valorant Glassmorphic Mobile-Card UI stylesheet (warm cream `#ECE8E1` light default, `#0F1923` dark mode, frosted glass panels/modals/cards).
 - `app/Filament/Pages/Auth/Login.php` — Custom Filament 5 login page authenticating via `username` instead of `email`.
@@ -35,6 +35,7 @@
 - `AGENTS.md` & `CLAUDE.md` — Agent instructions including Laravel Boost guidelines and project workflow rules (`ntfy.sh/vd-tasks`, `memory.md`, `changelog.md`, git commit & push).
 
 ## Task History
+- **2026-11-21 (`v1.3.2`):** Fixed `.fi-section` `backdrop-filter` stacking-context overlap on `ColorPicker`/dropdown popovers inside slideover modals, and added `ColorPicker::withSwatches()` preset swatches alongside custom color picking.
 - **2026-11-21 (`v1.3.1`):** Added `reverb:ensure-running` command and scheduled it every minute in `routes/console.php` for shared cPanel cron automation.
 - **2026-11-21 (`v1.3.0`):** Built reusable Tournament/Team/Player/GameMatch/MatchVeto/MatchMap/PlayerMatchStat models & Filament `ManageRecords` resources, Team/Player CSV Import/Export, installed Laravel Reverb, and created real-time OBS Browser Source overlays for Map Veto and Post-Match Scoreboards.
 - **2026-11-20 (`v1.2.0`):** Configured global `7xl` slideover modals for Create/Edit/View actions, converted `UserResource` to `ManageUsers`, and upgraded Filament, `/changelog`, and `/` to a Warm Valorant Glassmorphic Mobile-Card UI (`#ECE8E1` / `#0F1923` + `#FF4655`).

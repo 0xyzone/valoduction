@@ -4,6 +4,14 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.3.2] - 2026-11-21
+
+### Fixed
+- Fixed CSS stacking-context overlap where `backdrop-filter` on `.fi-section` inside slideover modals clipped/occluded `ColorPicker` and dropdown popovers behind subsequent sections.
+
+### Added
+- Added `ColorPicker::withSwatches()` macro (`AppServiceProvider`) and `resources/views/filament/components/color-swatches.blade.php` providing quick preset color swatches alongside the custom `ColorPicker` on `TeamForm`.
+
 ## [v1.3.1] - 2026-11-21
 
 ### Added

@@ -64,11 +64,15 @@ class TournamentOpsTest extends TestCase
 
         $this->assertDatabaseHas('tournaments', ['slug' => 'valoduction-masters']);
 
+        $swatchesHtml = view('filament.components.color-swatches', ['statePath' => 'data.primary_color'])->render();
+        $this->assertStringContainsString('Select color #FF4655', $swatchesHtml);
+
         Livewire::test(ManageTeams::class)
             ->assertOk()
             ->callAction(CreateAction::class, data: [
                 'name' => 'Team Alpha',
                 'short_name' => 'ALP',
+                'primary_color' => '#FF4655',
                 'region' => 'APAC',
             ])
             ->assertHasNoActionErrors();

@@ -33,7 +33,8 @@ class TeamForm
                             ->unique(ignoreRecord: true)
                             ->maxLength(16),
                         ColorPicker::make('primary_color')
-                            ->label('Brand Color'),
+                            ->label('Brand Color')
+                            ->withSwatches(),
                         TextInput::make('region')
                             ->placeholder('e.g. APAC, EMEA, Americas')
                             ->maxLength(255),
