@@ -4,6 +4,15 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.3.0] - 2026-11-21
+
+### Added
+- Tournament domain models, migrations, and factories: `Tournament`, `Team`, `Player` (reusable across tournaments via `tournament_team`), `GameMatch`, `MatchVeto`, `MatchMap`, and `PlayerMatchStat` (ACS, K/D/A, ADR, HS%, FK/FD, Credits Spent, Agent).
+- Filament `ManageRecords` (`7xl` slideover) resources for `TournamentResource`, `TeamResource`, `PlayerResource`, and `GameMatchResource` (including nested live Map Veto and Map/Player Scoreboard repeaters).
+- Bulk CSV `ImportAction` and `ExportAction` for Teams (with optional attach-to-tournament option) and Players.
+- Installed Laravel Reverb (`laravel/reverb`) with `MatchUpdated` and `VetoUpdated` real-time broadcast events (`ShouldBroadcastNow`).
+- Public transparent OBS Browser Source overlays at `/overlays/matches/{gameMatch}/veto` and `/overlays/matches/{gameMatch}/post-match` listening to Reverb WebSockets in real time.
+
 ## [v1.2.0] - 2026-11-20
 
 ### Changed
