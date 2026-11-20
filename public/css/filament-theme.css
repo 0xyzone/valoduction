@@ -1,0 +1,166 @@
+/* Valoduction — Warm Valorant Glassmorphic UI */
+
+:root {
+    --vd-cream: #ece8e1;
+    --vd-cream-soft: #f5f2ec;
+    --vd-obsidian: #0f1923;
+    --vd-obsidian-elevated: #162332;
+    --vd-red: #ff4655;
+    --vd-red-deep: #d93442;
+    --vd-gold: #c89b3c;
+    --vd-glass-light: rgba(255, 252, 247, 0.74);
+    --vd-glass-light-strong: rgba(255, 252, 247, 0.88);
+    --vd-glass-dark: rgba(20, 32, 46, 0.76);
+    --vd-glass-dark-strong: rgba(20, 32, 46, 0.9);
+    --vd-border-light: rgba(15, 25, 35, 0.08);
+    --vd-border-dark: rgba(236, 232, 225, 0.1);
+}
+
+/* Warm Cream Canvas (Light Default) */
+body.fi-body {
+    background-color: var(--vd-cream) !important;
+    background-image:
+        radial-gradient(circle at 10% 8%, rgba(255, 70, 85, 0.09), transparent 40%),
+        radial-gradient(circle at 90% 14%, rgba(200, 155, 60, 0.1), transparent 38%),
+        radial-gradient(circle at 80% 92%, rgba(255, 70, 85, 0.06), transparent 42%) !important;
+    background-attachment: fixed !important;
+    color: var(--vd-obsidian);
+}
+
+.dark body.fi-body,
+html.dark body.fi-body {
+    background-color: var(--vd-obsidian) !important;
+    background-image:
+        radial-gradient(circle at 12% 10%, rgba(255, 70, 85, 0.14), transparent 42%),
+        radial-gradient(circle at 88% 88%, rgba(200, 155, 60, 0.08), transparent 45%) !important;
+    color: var(--vd-cream);
+}
+
+/* Glassmorphic Topbar & Sidebar */
+.fi-topbar > nav {
+    background-color: var(--vd-glass-light) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid var(--vd-border-light) !important;
+}
+
+.dark .fi-topbar > nav {
+    background-color: var(--vd-glass-dark) !important;
+    border-bottom: 1px solid var(--vd-border-dark) !important;
+}
+
+.fi-sidebar {
+    background-color: var(--vd-glass-light) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-inline-end: 1px solid var(--vd-border-light) !important;
+}
+
+.dark .fi-sidebar {
+    background-color: var(--vd-glass-dark) !important;
+    border-inline-end: 1px solid var(--vd-border-dark) !important;
+}
+
+/* Mobile-Inspired Card Navigation Items */
+.fi-sidebar-item-btn {
+    border-radius: 0.875rem !important;
+    transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.fi-sidebar-item-active > .fi-sidebar-item-btn {
+    background: linear-gradient(135deg, rgba(255, 70, 85, 0.14), rgba(255, 70, 85, 0.06)) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 70, 85, 0.25);
+}
+
+.fi-sidebar-item-active > .fi-sidebar-item-btn .fi-sidebar-item-label,
+.fi-sidebar-item-active > .fi-sidebar-item-btn .fi-sidebar-item-icon {
+    color: var(--vd-red) !important;
+}
+
+/* Glassmorphic Cards: Sections, Tables, Widgets, Login Card */
+.fi-simple-main,
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat,
+.fi-wi-widget .fi-section,
+.fi-fo-tabs,
+.fi-in-section {
+    background-color: var(--vd-glass-light) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid var(--vd-border-light) !important;
+    border-radius: 1.25rem !important;
+    box-shadow: 0 12px 32px -12px rgba(15, 25, 35, 0.1) !important;
+}
+
+.dark .fi-simple-main,
+.dark .fi-section,
+.dark .fi-ta-ctn,
+.dark .fi-wi-stats-overview-stat,
+.dark .fi-wi-widget .fi-section,
+.dark .fi-fo-tabs,
+.dark .fi-in-section {
+    background-color: var(--vd-glass-dark) !important;
+    border: 1px solid var(--vd-border-dark) !important;
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Login Card Extra Polish */
+.fi-simple-main {
+    padding: 2rem !important;
+}
+
+/* Slideover & Modal Glass */
+.fi-modal-window {
+    background-color: var(--vd-glass-light-strong) !important;
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid var(--vd-border-light) !important;
+    box-shadow: 0 24px 56px -16px rgba(15, 25, 35, 0.22) !important;
+}
+
+.dark .fi-modal-window {
+    background-color: var(--vd-glass-dark-strong) !important;
+    border: 1px solid var(--vd-border-dark) !important;
+    box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Rounded Mobile-Friendly Inputs & Buttons */
+.fi-input-wrp {
+    border-radius: 0.875rem !important;
+    background-color: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(15, 25, 35, 0.12) !important;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.dark .fi-input-wrp {
+    background-color: rgba(15, 25, 35, 0.55) !important;
+    border-color: rgba(236, 232, 225, 0.14) !important;
+}
+
+.fi-btn {
+    border-radius: 0.875rem !important;
+    font-weight: 600 !important;
+    transition: transform 120ms ease, box-shadow 150ms ease !important;
+}
+
+.fi-btn:active {
+    transform: scale(0.985);
+}
+
+.fi-btn-color-primary {
+    box-shadow: 0 8px 20px -6px rgba(255, 70, 85, 0.48) !important;
+}
+
+/* Table Row Hover Warmth */
+.fi-ta-row {
+    transition: background-color 140ms ease;
+}
+
+.fi-ta-row:hover {
+    background-color: rgba(255, 70, 85, 0.04) !important;
+}
+
+.dark .fi-ta-row:hover {
+    background-color: rgba(255, 70, 85, 0.07) !important;
+}

@@ -4,6 +4,13 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.2.0] - 2026-11-20
+
+### Changed
+- Configured `CreateAction`, `EditAction`, and `ViewAction` globally as `7xl` slideover modals (`AppServiceProvider`) and converted `UserResource` to `ManageUsers` (`ManageRecords`) with `ViewAction` and `EditAction`.
+- Upgraded the Filament panel, sign-in page, `/changelog`, and `/` welcome page to a warm Valorant-inspired glassmorphic mobile-card UI (`#ECE8E1` warm cream light default, `#0F1923` dark mode, `#FF4655` Valorant Red primary).
+- Documented slideover modal, form layout, and UI theme conventions in `AGENTS.md`, `CLAUDE.md`, and `memory.md`.
+
 ## [v1.1.0] - 2026-11-20
 
 ### Added

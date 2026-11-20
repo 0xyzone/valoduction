@@ -3,11 +3,13 @@
 namespace Tests\Feature;
 
 use App\Filament\Pages\Auth\Login;
-use App\Filament\Resources\Users\Pages\CreateUser;
-use App\Filament\Resources\Users\Pages\EditUser;
-use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Facades\Filament;
+use Filament\Support\Enums\Width;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
@@ -83,17 +85,31 @@ class UserManagementTest extends TestCase
         $this->assertTrue(Hash::check('password123', $user->password));
     }
 
-    public function test_user_resource_can_list_create_and_edit_users(): void
+    public function test_global_create_edit_and_view_actions_use_7xl_slideovers(): void
+    {
+        $createAction = CreateAction::make();
+        $editAction = EditAction::make();
+        $viewAction = ViewAction::make();
+
+        $this->assertTrue($createAction->isModalSlideOver());
+        $this->assertSame(Width::SevenExtraLarge, $createAction->getModalWidth());
+
+        $this->assertTrue($editAction->isModalSlideOver());
+        $this->assertSame(Width::SevenExtraLarge, $editAction->getModalWidth());
+
+        $this->assertTrue($viewAction->isModalSlideOver());
+        $this->assertSame(Width::SevenExtraLarge, $viewAction->getModalWidth());
+    }
+
+    public function test_user_resource_can_list_create_and_edit_users_in_slideover_modals(): void
     {
         $admin = User::factory()->create();
         $this->actingAs($admin);
 
-        Livewire::test(ListUsers::class)
+        Livewire::test(ManageUsers::class)
             ->assertOk()
-            ->assertCanSeeTableRecords([$admin]);
-
-        Livewire::test(CreateUser::class)
-            ->fillForm([
+            ->assertCanSeeTableRecords([$admin])
+            ->callAction(CreateAction::class, data: [
                 'name' => 'Jane Doe',
                 'username' => 'janedoe',
                 'primary_phone' => '+15559876543',
@@ -101,21 +117,19 @@ class UserManagementTest extends TestCase
                 'password' => 'password123',
                 'is_active' => true,
             ])
-            ->call('create')
-            ->assertHasNoFormErrors();
+            ->assertHasNoActionErrors();
 
         $created = User::query()->where('username', 'janedoe')->first();
         $this->assertNotNull($created);
         $this->assertSame('Jane Doe', $created->name);
         $this->assertSame('+15559876543', $created->primary_phone);
 
-        Livewire::test(EditUser::class, ['record' => $created->getKey()])
-            ->fillForm([
+        Livewire::test(ManageUsers::class)
+            ->callTableAction(EditAction::class, $created, data: [
                 'name' => 'Jane Updated',
                 'is_active' => false,
             ])
-            ->call('save')
-            ->assertHasNoFormErrors();
+            ->assertHasNoTableActionErrors();
 
         $created->refresh();
         $this->assertSame('Jane Updated', $created->name);

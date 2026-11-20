@@ -16,6 +16,7 @@ class UserForm
             ->components([
                 Section::make('Profile')
                     ->columns(2)
+                    ->columnSpanFull()
                     ->schema([
                         FileUpload::make('avatar')
                             ->image()
@@ -42,6 +43,7 @@ class UserForm
                     ]),
                 Section::make('Access & Security')
                     ->columns(2)
+                    ->columnSpanFull()
                     ->schema([
                         TextInput::make('password')
                             ->password()

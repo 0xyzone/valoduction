@@ -12,6 +12,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Contracts\View\View;
@@ -35,9 +36,17 @@ class AdminPanelProvider extends PanelProvider
                 'version' => Changelog::latestVersion(),
             ]))
             ->login(Login::class)
+            ->font('Plus Jakarta Sans')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#FF4655'),
+                'warning' => Color::hex('#C89B3C'),
+                'gray' => Color::Zinc,
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->renderHook(
+                PanelsRenderHook::STYLES_AFTER,
+                fn (): string => '<link rel="stylesheet" href="'.asset('css/filament-theme.css').'">'
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

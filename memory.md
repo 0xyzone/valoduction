@@ -12,9 +12,11 @@
 - **Strict Rule:** Never run `npm run build` (or equivalent production asset builds).
 
 ## Key Files & Architecture
-- `app/Providers/Filament/AdminPanelProvider.php` — Main Filament `admin` panel (`/admin`, Amber primary color, custom `App\Filament\Pages\Auth\Login`). Uses `brandLogo` pointing to `resources/views/filament/brand.blade.php` with `Changelog::latestVersion()`.
+- `app/Providers/AppServiceProvider.php` — Globally configures `CreateAction`, `EditAction`, and `ViewAction` as `7xl` slideover modals (`Width::SevenExtraLarge`).
+- `app/Providers/Filament/AdminPanelProvider.php` — Main Filament `admin` panel (`/admin`, Valorant Red `#FF4655` primary, Warm Gold `#C89B3C` warning, `Plus Jakarta Sans`, collapsible sidebar, custom `App\Filament\Pages\Auth\Login`, `public/css/filament-theme.css` hook). Uses `brandLogo` pointing to `resources/views/filament/brand.blade.php` with `Changelog::latestVersion()`.
+- `public/css/filament-theme.css` — Warm Valorant Glassmorphic Mobile-Card UI stylesheet (warm cream `#ECE8E1` light default, `#0F1923` dark mode, frosted glass panels/modals/cards).
 - `app/Filament/Pages/Auth/Login.php` — Custom Filament 5 login page authenticating via `username` instead of `email`.
-- `app/Filament/Resources/Users/` — Filament `UserResource` (`UserForm`, `UsersTable`, `ListUsers`, `CreateUser`, `EditUser`) managing `avatar`, `name`, `username`, `primary_phone`, `email`, `password`, and `is_active`.
+- `app/Filament/Resources/Users/` — Filament `UserResource` (`UserForm`, `UsersTable`, `ManageUsers`) managing `avatar`, `name`, `username`, `primary_phone`, `email`, `password`, and `is_active` via `7xl` slideover modals.
 - `app/Console/Commands/MakeFilamentUserCommand.php` — Overrides `make:filament-user` to prompt for `username`, optional `primary-phone` and `email`, `name`, and `password`.
 - `app/Models/User.php` — Implements `FilamentUser` (`canAccessPanel()` checks `is_active`) and `HasAvatar` (`getFilamentAvatarUrl()`).
 - `database/migrations/2026_11_20_073426_add_profile_fields_to_users_table.php` — Adds `username` (unique), `primary_phone` (nullable), `is_active` (boolean, default `true`), `avatar` (nullable), and makes `email` nullable.
@@ -27,5 +29,6 @@
 - `AGENTS.md` & `CLAUDE.md` — Agent instructions including Laravel Boost guidelines and project workflow rules (`ntfy.sh/vd-tasks`, `memory.md`, `changelog.md`, git commit & push).
 
 ## Task History
+- **2026-11-20 (`v1.2.0`):** Configured global `7xl` slideover modals for Create/Edit/View actions, converted `UserResource` to `ManageUsers`, and upgraded Filament, `/changelog`, and `/` to a Warm Valorant Glassmorphic Mobile-Card UI (`#ECE8E1` / `#0F1923` + `#FF4655`).
 - **2026-11-20 (`v1.1.0`):** Added `username`, `primary_phone`, `is_active`, `avatar`, and nullable `email` to `users`; built Filament `UserResource`, username-based `Login` page, `FilamentUser`/`HasAvatar` on `User`, and overrode `make:filament-user` to use `username`.
 - **2026-11-20 (`v1.0.0`):** Initialized project workflow automation (`ntfy.sh/vd-tasks` notification rule, `memory.md`, `AGENTS.md`/`CLAUDE.md` rules, automatic git commit & push), `changelog.md`, public `/changelog` timeline page, and Filament brand version pill on sign-in and panel views.

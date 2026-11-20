@@ -158,4 +158,9 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
    ```bash
    curl -s -H "Title: Valoduction Task Complete" -d "<concise summary of what was completed>" https://ntfy.sh/vd-tasks
    ```
+6. **Filament Slideover & UI Conventions:**
+   - `CreateAction`, `EditAction`, and `ViewAction` are globally configured as `7xl` slideovers in `AppServiceProvider::boot()`.
+   - Always build Filament resources as simple/modal resources (`ManageRecords`, no separate `create`/`edit`/`view` pages) and include `ViewAction::make()` and `EditAction::make()` in table record actions.
+   - Structure Filament forms with `Section` / `Grid` and `->columnSpanFull()` on top-level sections so forms lay out cleanly inside `7xl` slideover modals.
+   - Follow the Warm Valorant Glassmorphic Mobile-Card UI language (`#ECE8E1` warm cream light default, `#0F1923` dark mode, `#FF4655` Valorant Red primary, frosted glass cards, rounded corners).
 </project-workflow-rules>
