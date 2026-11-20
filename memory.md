@@ -22,6 +22,7 @@
 - `app/Support/Valorant.php` — Canonical Valorant maps, roles, and agents lists.
 - `app/Support/MatchPayload.php` — Serializes `GameMatch` + vetos + maps + player stats and safely dispatches Reverb broadcasts.
 - `app/Events/MatchUpdated.php` & `app/Events/VetoUpdated.php` — `ShouldBroadcastNow` events on public `matches.{id}` channel via Laravel Reverb.
+- `app/Console/Commands/EnsureReverbRunning.php` & `routes/console.php` — `reverb:ensure-running` command scheduled every minute (`withoutOverlapping()`) for cPanel `schedule:run` cron jobs to keep Laravel Reverb running.
 - `app/Http/Controllers/OverlayController.php` & `resources/views/overlays/{veto,post-match}.blade.php` — Transparent OBS Browser Source views with zero-build native WebSocket Reverb listeners.
 - `app/Filament/Resources/{Tournaments,Teams,Players,GameMatches}/` — `ManageRecords` (`7xl` slideover) resources under `Tournament Ops` nav group, plus `TeamImporter`/`TeamExporter` (with attach-to-tournament option) and `PlayerImporter`/`PlayerExporter`.
 - `database/migrations/2026_11_20_073426_add_profile_fields_to_users_table.php` — Adds `username` (unique), `primary_phone` (nullable), `is_active` (boolean, default `true`), `avatar` (nullable), and makes `email` nullable.
@@ -34,6 +35,7 @@
 - `AGENTS.md` & `CLAUDE.md` — Agent instructions including Laravel Boost guidelines and project workflow rules (`ntfy.sh/vd-tasks`, `memory.md`, `changelog.md`, git commit & push).
 
 ## Task History
+- **2026-11-21 (`v1.3.1`):** Added `reverb:ensure-running` command and scheduled it every minute in `routes/console.php` for shared cPanel cron automation.
 - **2026-11-21 (`v1.3.0`):** Built reusable Tournament/Team/Player/GameMatch/MatchVeto/MatchMap/PlayerMatchStat models & Filament `ManageRecords` resources, Team/Player CSV Import/Export, installed Laravel Reverb, and created real-time OBS Browser Source overlays for Map Veto and Post-Match Scoreboards.
 - **2026-11-20 (`v1.2.0`):** Configured global `7xl` slideover modals for Create/Edit/View actions, converted `UserResource` to `ManageUsers`, and upgraded Filament, `/changelog`, and `/` to a Warm Valorant Glassmorphic Mobile-Card UI (`#ECE8E1` / `#0F1923` + `#FF4655`).
 - **2026-11-20 (`v1.1.0`):** Added `username`, `primary_phone`, `is_active`, `avatar`, and nullable `email` to `users`; built Filament `UserResource`, username-based `Login` page, `FilamentUser`/`HasAvatar` on `User`, and overrode `make:filament-user` to use `username`.

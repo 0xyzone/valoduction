@@ -4,6 +4,11 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.3.1] - 2026-11-21
+
+### Added
+- `reverb:ensure-running` Artisan command (`EnsureReverbRunning`) scheduled every minute in `routes/console.php` (`withoutOverlapping()`) to automatically start and keep Laravel Reverb running via a single cPanel `schedule:run` cron job.
+
 ## [v1.3.0] - 2026-11-21
 
 ### Added
