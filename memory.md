@@ -36,6 +36,7 @@
 - `AGENTS.md` & `CLAUDE.md` — Agent instructions including Laravel Boost guidelines and project workflow rules (`ntfy.sh/vd-tasks`, `memory.md`, `changelog.md`, git commit & push).
 
 ## Task History
+- **2026-11-21 (`v1.3.4`):** Added dummy sample rows (`->examples()`) to `TeamImporter` and `PlayerImporter` for Filament's example CSV download (keeping strict team lookup validation on player import).
 - **2026-11-21 (`v1.3.3`):** Added live `ReverbStatusIndicator` pill (`Reverb Live` / `Reverb Offline`) in the Filament topbar backed by `App\Support\ReverbStatus`.
 - **2026-11-21 (`v1.3.2`):** Fixed `.fi-section` `backdrop-filter` stacking-context overlap on `ColorPicker`/dropdown popovers inside slideover modals, and added `ColorPicker::withSwatches()` preset swatches alongside custom color picking.
 - **2026-11-21 (`v1.3.1`):** Added `reverb:ensure-running` command and scheduled it every minute in `routes/console.php` for shared cPanel cron automation.

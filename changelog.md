@@ -4,6 +4,11 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.3.4] - 2026-11-21
+
+### Added
+- Added realistic dummy sample rows (`->examples()`) to `TeamImporter` and `PlayerImporter` so Filament's **Download example CSV** generates ready-to-reference import templates.
+
 ## [v1.3.3] - 2026-11-21
 
 ### Added

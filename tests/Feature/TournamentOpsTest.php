@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Events\MatchUpdated;
 use App\Events\VetoUpdated;
+use App\Filament\Imports\PlayerImporter;
+use App\Filament\Imports\TeamImporter;
 use App\Filament\Resources\GameMatches\Pages\ManageGameMatches;
 use App\Filament\Resources\Players\Pages\ManagePlayers;
 use App\Filament\Resources\Teams\Pages\ManageTeams;
@@ -174,5 +176,14 @@ class TournamentOpsTest extends TestCase
             ->assertSee('Sentinels')
             ->assertSee('TenZ')
             ->assertSee('Jett');
+    }
+
+    public function test_team_and_player_importers_provide_sample_examples(): void
+    {
+        $teamColumns = TeamImporter::getColumns();
+        $playerColumns = PlayerImporter::getColumns();
+
+        $this->assertNotEmpty($teamColumns[0]->getExamples());
+        $this->assertNotEmpty($playerColumns[0]->getExamples());
     }
 }

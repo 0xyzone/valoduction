@@ -19,16 +19,21 @@ class TeamImporter extends Importer
         return [
             ImportColumn::make('name')
                 ->requiredMapping()
-                ->rules(['required', 'max:255']),
+                ->rules(['required', 'max:255'])
+                ->examples(['Sentinels', 'Paper Rex']),
             ImportColumn::make('short_name')
                 ->requiredMapping()
-                ->rules(['required', 'max:16']),
+                ->rules(['required', 'max:16'])
+                ->examples(['SEN', 'PRX']),
             ImportColumn::make('logo')
-                ->rules(['max:255']),
+                ->rules(['max:255'])
+                ->examples(['', '']),
             ImportColumn::make('primary_color')
-                ->rules(['max:16']),
+                ->rules(['max:16'])
+                ->examples(['#FF4655', '#3B82F6']),
             ImportColumn::make('region')
-                ->rules(['max:255']),
+                ->rules(['max:255'])
+                ->examples(['Americas', 'APAC']),
         ];
     }
 
