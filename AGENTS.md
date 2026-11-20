@@ -146,3 +146,16 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Run `vendor/bin/phpunit` to call the test runner directly. It accepts the same file path and `--filter=testName` arguments.
 
 </laravel-boost-guidelines>
+
+<project-workflow-rules>
+# Project Workflow Rules
+
+1. **Read `memory.md` First:** Before scanning or analyzing the codebase, read `memory.md` in the project root to understand the current architecture, key files, and recent changes.
+2. **Update `memory.md` on Completion:** Whenever a task is completed, update `memory.md` with any new/modified files, routes, models, or architectural notes, plus a short entry under `Task History`.
+3. **Update `changelog.md` on Completion:** Record notable changes in `changelog.md` using Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates). The latest version in `changelog.md` automatically drives the Filament version pill and `/changelog` timeline.
+4. **Git Commit & Push:** After completing a task (and formatting/testing), stage all changes, commit with a clear message, and run `git push origin main` (or the active tracking branch).
+5. **Send `ntfy.sh` Notification:** On every completed task, send a notification to `https://ntfy.sh/vd-tasks`:
+   ```bash
+   curl -s -H "Title: Valoduction Task Complete" -d "<concise summary of what was completed>" https://ntfy.sh/vd-tasks
+   ```
+</project-workflow-rules>
