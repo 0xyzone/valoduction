@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\ReverbStatusIndicator;
 use Illuminate\Console\Scheduling\Schedule;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ReverbSchedulerTest extends TestCase
@@ -23,5 +25,14 @@ class ReverbSchedulerTest extends TestCase
     {
         $this->artisan('reverb:ensure-running', ['--dry-run' => true])
             ->assertSuccessful();
+    }
+
+    public function test_reverb_status_indicator_renders_in_topbar(): void
+    {
+        Livewire::test(ReverbStatusIndicator::class)
+            ->assertOk()
+            ->assertSee('Reverb')
+            ->call('refreshStatus')
+            ->assertOk();
     }
 }

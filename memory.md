@@ -22,6 +22,7 @@
 - `app/Support/Valorant.php` — Canonical Valorant maps, roles, and agents lists.
 - `app/Support/MatchPayload.php` — Serializes `GameMatch` + vetos + maps + player stats and safely dispatches Reverb broadcasts.
 - `app/Events/MatchUpdated.php` & `app/Events/VetoUpdated.php` — `ShouldBroadcastNow` events on public `matches.{id}` channel via Laravel Reverb.
+- `app/Support/ReverbStatus.php` & `app/Livewire/ReverbStatusIndicator.php` — Shared Reverb TCP socket status checker and live-polling (`15s`) Filament topbar pill (`PanelsRenderHook::USER_MENU_BEFORE`).
 - `app/Console/Commands/EnsureReverbRunning.php` & `routes/console.php` — `reverb:ensure-running` command scheduled every minute (`withoutOverlapping()`) for cPanel `schedule:run` cron jobs to keep Laravel Reverb running.
 - `app/Http/Controllers/OverlayController.php` & `resources/views/overlays/{veto,post-match}.blade.php` — Transparent OBS Browser Source views with zero-build native WebSocket Reverb listeners.
 - `app/Filament/Resources/{Tournaments,Teams,Players,GameMatches}/` — `ManageRecords` (`7xl` slideover) resources under `Tournament Ops` nav group, plus `TeamImporter`/`TeamExporter` (with attach-to-tournament option) and `PlayerImporter`/`PlayerExporter`.
@@ -35,6 +36,7 @@
 - `AGENTS.md` & `CLAUDE.md` — Agent instructions including Laravel Boost guidelines and project workflow rules (`ntfy.sh/vd-tasks`, `memory.md`, `changelog.md`, git commit & push).
 
 ## Task History
+- **2026-11-21 (`v1.3.3`):** Added live `ReverbStatusIndicator` pill (`Reverb Live` / `Reverb Offline`) in the Filament topbar backed by `App\Support\ReverbStatus`.
 - **2026-11-21 (`v1.3.2`):** Fixed `.fi-section` `backdrop-filter` stacking-context overlap on `ColorPicker`/dropdown popovers inside slideover modals, and added `ColorPicker::withSwatches()` preset swatches alongside custom color picking.
 - **2026-11-21 (`v1.3.1`):** Added `reverb:ensure-running` command and scheduled it every minute in `routes/console.php` for shared cPanel cron automation.
 - **2026-11-21 (`v1.3.0`):** Built reusable Tournament/Team/Player/GameMatch/MatchVeto/MatchMap/PlayerMatchStat models & Filament `ManageRecords` resources, Team/Player CSV Import/Export, installed Laravel Reverb, and created real-time OBS Browser Source overlays for Map Veto and Post-Match Scoreboards.

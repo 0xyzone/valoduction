@@ -4,6 +4,11 @@ All notable changes to **Valoduction** will be documented in this file.
 
 The format follows Semantic Versioning (`vMAJOR.MINOR.PATCH` for major, minor, and macro/patch updates).
 
+## [v1.3.3] - 2026-11-21
+
+### Added
+- Live `ReverbStatusIndicator` pill in the Filament topbar (`Reverb Live` / `Reverb Offline`, polling every 15s and clickable for instant recheck) backed by `App\Support\ReverbStatus`.
+
 ## [v1.3.2] - 2026-11-21
 
 ### Fixed

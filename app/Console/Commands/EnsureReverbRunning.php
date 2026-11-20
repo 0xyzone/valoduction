@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Support\ReverbStatus;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -27,9 +28,7 @@ class EnsureReverbRunning extends Command
      */
     public function handle(): int
     {
-        $host = (string) config('reverb.servers.reverb.host', '0.0.0.0');
-        $port = (int) config('reverb.servers.reverb.port', 8080);
-        $checkHost = $host === '0.0.0.0' ? '127.0.0.1' : $host;
+        ['host' => $checkHost, 'port' => $port] = ReverbStatus::localEndpoint();
 
         if ($this->isPortListening($checkHost, $port)) {
             $this->info("Reverb is already running on {$checkHost}:{$port}.");
@@ -67,19 +66,6 @@ class EnsureReverbRunning extends Command
      */
     protected function isPortListening(string $host, int $port): bool
     {
-        $connection = @stream_socket_client(
-            "tcp://{$host}:{$port}",
-            $errorCode,
-            $errorMessage,
-            1.0
-        );
-
-        if (is_resource($connection)) {
-            fclose($connection);
-
-            return true;
-        }
-
-        return false;
+        return ReverbStatus::isRunning(1.0);
     }
 }
